@@ -13,7 +13,7 @@
         </q-card>
       </div>
 
-      <div class="col-xs-12 col-sm-12 col-md-2 q-pt-md q-px-sm">
+      <div class="col-xs-12 col-sm-12 col-md-2 q-pt-sm q-px-sm">
         <q-card bordered
                 style="border-radius: 15px;"
                 class="shadow-0 bg-white">

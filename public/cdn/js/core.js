@@ -81,7 +81,7 @@ export async function iniFrontend(options, url) {
     await setDevice();
 
     // Widget Carregado
-    console.log('Mobile:', mobile)
+    // console.log('Mobile:', mobile)
     console.log("Widget Loaded!")
 
     // Mostra Botão e iFrame
@@ -147,7 +147,7 @@ export function insertButtons(options){
             const list = document.getElementById("wbjs_widFrame");
 
             options.buttons.forEach(item => {
-                console.log(item)
+                // console.log(item)
 
                 // Botão Modelo
                 list.insertAdjacentHTML('afterend', `
