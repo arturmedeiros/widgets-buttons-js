@@ -1,0 +1,29 @@
+/*!
+/* Widgets & Buttons (TYPE 1) - v 1.0.0
+/* Copyright 2022 - Author: Artur Medeiros - @arturmedeiros
+/**/
+
+/* Fonts */
+@import url('././styles.css');
+
+/* Styles */
+
+/*Button to open popup*/
+.wbjs_wid-open-button {
+  right: 30px;
+}
+
+/*Button to close popup*/
+.wbjs_wid-close-button {
+  right: 30px;
+}
+
+/* Popup window - hidden by default */
+.wbjs_wid-popup {
+  right: 30px;
+}
+
+/* Bot CTA */
+.wbjs_bot_cta_chat {
+  right: 100px;
+}

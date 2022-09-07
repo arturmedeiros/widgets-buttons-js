@@ -1,0 +1,299 @@
+/*!
+/* Widgets & Buttons (TYPE 1) - v 1.0.0
+/* Copyright 2022 - Author: Artur Medeiros - @arturmedeiros
+/**/
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;600;700;800;900&display=swap');
+@import url('https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css');
+/*@import url('https://afeld.github.io/emoji-css/emoji.css');*/
+
+/* Animations */
+@import url('././animations.css');
+
+/* Responsive */
+@import url('././responsive.css');
+
+/* Styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input:focus {
+  outline: 0;
+  border: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+}
+
+:focus {
+  outline: none!important;
+}
+
+#wbjs_myBotWidget {
+  max-width: 300px;
+}
+
+.wbjs_btn-close-mobile {
+  width: 45px;
+  height: 50px;
+  z-index: 9999;
+  position: fixed;
+  right: 0;
+  top: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  cursor: pointer;
+}
+
+/*Button to open popup*/
+.wbjs_wid-open-button {
+  line-height: 0!important;
+  font-size: 40px;
+  animation: widhide .6s forwards;
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 12px 12px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 1;
+  position: fixed;
+  bottom: 30px;
+  /*right: 30px;*/
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 6px 8px 2px rgba(0,0,0,0.14);
+  -webkit-box-shadow: 0 6px 8px 2px rgba(0,0,0,0.14);
+  z-index: 999999999999;
+}
+
+/*Button to close popup*/
+.wbjs_wid-close-button {
+  font-size: 40px;
+  line-height: 0!important;
+  animation: rotate-center .5s forwards;
+  background-color: #555;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 1;
+  position: fixed;
+  bottom: 30px;
+  /*right: 30px;*/
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 6px 8px 2px rgba(0,0,0,0.14);
+  -webkit-box-shadow: 0 6px 8px 2px rgba(0,0,0,0.14);
+  z-index: 999999999999;
+}
+
+/* Popup window - hidden by default */
+.wbjs_wid-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  /*right: 30px;*/
+  border: 0;
+  /*box-shadow: 0px 0.3rem 0.5rem 0 rgb(0 0 0 / 15%);*/
+  /*border-radius: 10px;*/
+  /*background-image: linear-gradient(180deg, #dedede, #f1f1f1, #fff);*/
+  /*background-image: linear-gradient(180deg, #dcdcdf, #eff1f1, #fff);*/
+  padding: 0;
+  animation: slide-top .4s forwards;
+  z-index: 999999999999;
+}
+
+/* Bot CTA */
+.wbjs_bot_cta_chat {
+  display: none;
+  /*color: #3a00cd;*/
+  line-height: 0!important;
+  padding: 15px 12px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 1;
+  position: fixed;
+  bottom: 35px;
+  /*right: 100px;*/
+  font-size: 12px;
+  animation: slide-bottom-to-top .6s ease-in-out;
+  font-family: 'Jost', sans-serif;
+  box-shadow: 0 6px 8px 2px rgb(0 0 0 / 14%);
+  -webkit-box-shadow: 0 6px 8px 2px rgb(0 0 0 / 14%);
+  z-index: 999999999999;
+  background-color: #ffffff;
+}
+
+.wbjs_wid-row {
+  /*padding: 25px 25px 30px 25px;*/
+  padding: 25px 25px 60px 25px;
+  background: #00d2b5;
+  border-radius: 8px 8px 0 0;
+}
+
+/* FORMSTYLE */
+
+.wbjs_wid-terms {
+  font-family: 'Jost', sans-serif;
+  font-size: .6rem;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: -5px;
+  color: black;
+  padding: 0.5rem!important;
+}
+
+.wbjs_form-check-label, .wbjs_wid-terms-check {
+  font-family: 'Jost', sans-serif;
+  font-size: .8rem;
+  text-align: center;
+  line-height: 1.2rem;
+  margin-top: -10px;
+  color: black;
+  margin-left: 0.3rem;
+}
+
+.wbjs_wid-required {
+  font-size: .7rem;
+}
+
+.wbjs_wid-popup-header {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  line-height: 1.1;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 6px 0 16px 0;
+}
+
+.wbjs_wid-form {
+  display: block;
+  padding: 25px 15px 0 15px;
+  /*margin: -40px 15px 17px 15px;*/
+  margin: -65px 15px 17px 15px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 -0.6rem 0.3rem 0 rgb(0 0 0 / 8%);
+}
+
+.wbjs_wid-input[type=text], .wbjs_wid-input[type=tel], .wbjs_wid-input[type=number], .wbjs_wid-input[type=email], select {
+  font-family: 'Jost', sans-serif;
+  width: 100%;
+  padding: 10px 18px;
+  margin: 5px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  outline-style: none !important;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  background: #f7f7f7;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+}
+
+.wbjs_wid-input[type=text]:focus, .wbjs_wid-input[type=tel]:focus, .wbjs_wid-input[type=number]:focus, .wbjs_wid-input[type=email]:focus, select {
+  font-family: 'Jost', sans-serif;
+  width: 100%;
+  padding: 10px 18px;
+  margin: 5px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  outline-style: none !important;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  background: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  transition: color .3s, border .3s, background .3s, opacity .3s;
+}
+
+.wbjs_wid-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.wbjs_wid-send {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.wbjs_wid-button {
+  background-color: seagreen;
+  font-family: 'Jost', sans-serif;
+  border: none;
+  color: white;
+  font-weight: 600 !important;
+  width: 100%;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: .8rem;
+  margin: 4px 2px;
+  transition: 0.5s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+}
+
+.wbjs_wid-button:hover {
+  opacity: 1
+}
+
+.wbjs_wid-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.wbjs_wid-copyright {
+  padding-top: .5rem!important;
+  justify-content: center;
+  opacity: 55%;
+  transition: all .2s;
+}
+
+.wbjs_wid-copyright:hover {
+  opacity: 100%;
+  transition: all .2s;
+}
+
+.wbjs_wid-sended {
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.2;
+  font-size: 16px;
+  padding-bottom: 0;
+}
+
+.wbjs_wid-buttons {
+  line-height: 0!important;
+  font-size: 40px;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 1;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 6px 6px 2px rgba(0,0,0,0.14);
+  -webkit-box-shadow: 0 6px 6px 2px rgba(0,0,0,0.14);
+  z-index: 999999999999;
+}

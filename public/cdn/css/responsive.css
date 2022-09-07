@@ -1,0 +1,28 @@
+/*!
+/* Widgets & Buttons (TYPE 1) - v 1.0.0
+/* Copyright 2022 - Author: Artur Medeiros - @arturmedeiros
+/**/
+
+/* RESPONSIVE */
+
+/* 800px */
+@media only screen and (max-width: 800px) {}
+
+@media screen and (max-width: 800px) {
+  .wbjs_btn-close-mobile {
+    top: 3px!important;
+  }
+}
+
+/* 320px - iPhone 5 and smaller views */
+@media only screen and (max-width: 320px) {
+  #wbjs_myBotWidget {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #wbjs_myBotWidget {
+    max-width: 250px;
+  }
+}
