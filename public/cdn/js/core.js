@@ -8,7 +8,8 @@ export let mobile = false
 export let open = false
 // export const url = '.'
 // export const url = 'http://localhost:8080/cdn'
-export const url = 'http://192.168.15.5:8080/cdn'
+// export const url = 'http://192.168.15.5:8080/cdn'
+export const url = 'https://raw.githubusercontent.com/arturmedeiros/widgets-buttons-js/master/public/cdn'
 
 /* Options */
 
