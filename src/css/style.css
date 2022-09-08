@@ -1,3 +1,9 @@
+/* Scape - Margin top no scroll */
+section {
+  scroll-margin-top: 7rem;
+}
+
+
 /*Theme Light*/
 
 .bg_dark_blue {
@@ -116,4 +122,38 @@
 }
 .badge-dark {
   color: #a8a8a8;
+}
+
+.item_hover:hover {
+  box-shadow: 0px 2px 5px 0px #00000036;
+  border-radius: 10px;
+  transition: .2s all;
+}
+
+.menu_pic_features {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 0;
+  float: right;
+}
+
+.menu_pic {
+  background: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  padding: 3rem;
+  float: right;
+}
+
+
+.border-radius-15 {
+  border-radius: 30px;
 }

@@ -5,8 +5,10 @@ import {copyToClipboard, useQuasar} from 'quasar'
 
 import no_pic from "assets/images/no-pic.png"
 
-export default async ({ app }) => {
+import VueHighlightJS from 'vue3-highlightjs'
 
+export default async ({ app }) => {
+  app.use(VueHighlightJS)
   app.mixin({
     computed: {
       ...mapState([
