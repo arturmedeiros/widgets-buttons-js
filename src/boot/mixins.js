@@ -33,6 +33,38 @@ export default async ({ app }) => {
       this.checkTheme()
     },
     methods: {
+      iconConvert(name) {
+        if (name === 'whatsapp') {
+          return 'mdi-whatsapp'
+        }
+        else if (name === 'email') {
+          return 'mdi-email'
+        }
+        else if (name === 'facebook') {
+          return 'mdi-facebook'
+        }
+        else if (name === 'instagram') {
+          return 'mdi-instagram'
+        }
+        else if (name === 'twitter') {
+          return 'mdi-twitter'
+        }
+        else if (name === 'whatsapp') {
+          return 'mdi-whatsapp'
+        }
+        else if (name === 'linkedin') {
+          return 'mdi-linkedin'
+        }
+        else if (name === 'youtube') {
+          return 'mdi-youtube'
+        }
+        else if (name === 'github') {
+          return 'mdi-github'
+        }
+        else {
+          return name
+        }
+      },
       xeroxHelper(payload) {
         return JSON.parse(JSON.stringify(payload))
       },

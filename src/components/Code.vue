@@ -6,23 +6,10 @@
 <pre>
 <span>&lt;</span>script>
   const options = {
-    type: 1,
-    color_btn: "#027be3",
-    color_txt: "#ffffff",
-    position: "right",
-    icon: null,
-    icon_img: null,
-    msg: "Olá! Como posso ajudar?",
-    buttons: [
-      {
-        name: "github",
-        label: "GitHub",
-        icon: "bx bxl-github",
-        link: "https://github.com/",
-        color_btn: "#000000",
-        color_txt: null,
-      },
-    ]
+    "color_btn": "{{ color_btn }}",
+    "color_txt": "{{ color_txt }}",
+    "position": "{{ position }}",{{ msg ? '${\n} msg: "${msg}",' : ''}}
+    "buttons": {{ xeroxHelper(buttons) ?? [] }}
   };
 <span>&lt;</span>/script>
 <span>&lt;</span>script type="module" src="https://widgets-buttons.pages.dev/cdn/js/src.js"><span>&lt;</span>/script>
@@ -38,6 +25,15 @@
 
 export default {
   name: "Code",
+  props: [
+    "color_btn",
+    "color_txt",
+    "position",
+    "icon",
+    "icon_img",
+    "msg",
+    "buttons"
+  ],
   components:{
   },
   computed: {
