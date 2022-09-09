@@ -37,73 +37,55 @@
                 :key="`link_${index}`"
                 style="border-radius: 15px;"
                 class="shadow-0 bg-white q-mb-lg">
-          <q-card-section v-if="true">
-            <div class="cursor-pointer q-pt-sm q-pb-lg q-px-xs">
-              <q-item class="cursor-pointer q-px-none q-pb-md q-py-none q-pr-xs">
-                <q-item-section center>
-                  <div style="margin-top: -20px;"
-                       class="col-md-6 col-sm-12 col-xs-12 q-px-sm q-py-none">
-                    <q-input rounded
-                             :disable="edit_btn !== `link_${index}`"
-                             color="deep-purple-5"
-                             class="bg-white"
-                             v-model="link.title"
-                             label="Legenda (Título do Botão)"
-                             placeholder="Exemplo: Meu Instagram" >
-                    </q-input>
-                  </div>
-                </q-item-section>
-                <q-item-section center>
-                  <div style="margin-top: -20px;"
-                       class="col-md-6 col-sm-12 col-xs-12 q-px-sm q-py-none">
-                    <q-input rounded
-                             :disable="edit_btn !== `link_${index}`"
-                             color="deep-purple-5"
-                             class="bg-white"
-                             v-model="link.link"
-                             placeholder="Exemplo: https://youtube.com/watch?=ljdkjs"
-                             label="Digite o link">
-                      <template v-slot:prepend>
-                        <q-icon name="mdi-link" />
-                      </template>
-                    </q-input>
+          <q-card-section class="q-px-lg" v-if="true">
 
-                  </div>
-                </q-item-section>
-                <q-item-section center side>
-                  <div class="text-grey-8">
-                    <q-btn v-if="edit_btn !== `link_${index}`"
-                           @click="edit_btn = `link_${index}`"
-                           color="grey-7"
-                           class=""
-                           size="12px"
-                           round
-                           flat
-                           icon="edit">
-                      <q-tooltip>Editar</q-tooltip>
-                    </q-btn>
-                    <q-btn v-else
-                           @click="update_links()"
-                           color="grey-7"
-                           class=""
-                           size="12px"
-                           round
-                           flat
-                           icon="save">
-                      <q-tooltip>Salvar</q-tooltip>
-                    </q-btn>
-                    <q-btn color="grey-7"
-                           @click.stop="delete_btn(index)"
-                           class=""
-                           size="12px"
-                           round
-                           flat
-                           icon="delete">
-                      <q-tooltip>Excluir</q-tooltip>
-                    </q-btn>
-                  </div>
-                </q-item-section>
-              </q-item>
+            <!--Editar-->
+            <div v-if="true" class="row q-pt-none q-pb-lg">
+              <div class="col-md-4 col-sm-12 col-xs-12 q-px-sm q-py-sm">
+                <q-select
+                  rounded
+                  disable
+                  color="primary"
+                  v-model="link.label"
+                  label="Tipo do botão">
+                  <template v-slot:option="scope">
+                    <q-item v-bind="scope.itemProps">
+                      <q-item-section avatar>
+                        <q-icon :name="iconConvert(scope.opt.name)" />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt.label }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
+              <div class="col-md-7 col-sm-12 col-xs-12 q-px-sm q-py-sm">
+                <q-input rounded
+                         disable
+                         class="bg-white"
+                         v-model="link.link"
+                         placeholder="Exemplo: https://youtube.com/watch?=ljdkjs"
+                         label="Digite o link">
+                </q-input>
+              </div>
+              <div class="col-md-1 col-sm-12 col-xs-12 q-px-sm q-pt-md text-right">
+                <div class="q-pt-sm">
+                  <q-btn
+                    @click="remove(index)"
+                    v-if="true"
+                    dense
+                    round
+                    flat
+                    color="primary"
+                    size="15px"
+                  >
+                    <q-icon style="font-size: 20px;"
+                            name="delete"></q-icon>
+                  </q-btn>
+                  <q-tooltip>Remover</q-tooltip>
+                </div>
+              </div>
             </div>
           </q-card-section>
         </q-card>
@@ -122,7 +104,7 @@
                   Adicionar novo botão:
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12 q-px-sm q-py-sm">
+              <div class="col-md-4 col-sm-12 col-xs-12 q-px-sm q-py-sm">
                 <q-select
                   rounded
                   color="primary"
@@ -138,42 +120,34 @@
                       </q-item-section>
                       <q-item-section>
                         <q-item-label>{{ scope.opt.label }}</q-item-label>
-<!--                        <q-item-label caption>{{ scope.opt.description }}</q-item-label>-->
                       </q-item-section>
                     </q-item>
                   </template>
                 </q-select>
               </div>
-              <div class="col-md-6 col-sm-12 col-xs-12 q-px-sm q-py-sm">
+              <div class="col-md-7 col-sm-12 col-xs-12 q-px-sm q-py-sm">
                 <q-input rounded
                          class="bg-white"
-                         label="Legenda (Título do Botão)"
-                         placeholder="Exemplo: Meu Instagram"
-                         model-value="">
-                </q-input>
-              </div>
-              <div class="col-md-6 col-sm-12 col-xs-12 q-px-sm q-py-sm">
-                <q-input rounded
-                         class="bg-white"
+                         v-model="new_button.link"
                          placeholder="Exemplo: https://youtube.com/watch?=ljdkjs"
                          label="Digite o link">
-
-                  <template v-slot:prepend>
-                    <q-icon name="mdi-link" />
-                  </template>
-                  <template v-slot:append>
-                    <q-btn color="grey-7"
-                           class="animated fadeIn"
-                           size="12px"
-                           round
-                           flat
-                           @click="add_btn()"
-                           unelevated
-                           icon="save">
-                      <q-tooltip>{{ true ? 'Preencha os campos' : 'Salvar' }}</q-tooltip>
-                    </q-btn>
-                  </template>
                 </q-input>
+              </div>
+              <div class="col-md-1 col-sm-12 col-xs-12 q-px-sm q-pt-md text-right">
+                <div class="q-pt-sm">
+                  <q-btn
+                    v-if="true"
+                    :disable="!new_button.name || !new_button.link"
+                    @click="new_button.name && new_button.link ? add() : ''"
+                    dense
+                    round
+                    color="primary"
+                    size="15px"
+                  >
+                    <q-icon style="font-size: 20px;"
+                            name="save"></q-icon>
+                  </q-btn>
+                </div>
               </div>
             </div>
           </q-card-section>
@@ -181,6 +155,7 @@
 
         <!--Código-->
         <q-card bordered
+                v-if="false"
                 style="border-radius: 15px;"
                 class="shadow-0 bg-white q-mt-lg">
 
@@ -195,13 +170,29 @@
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 q-px-md q-py-sm">
-                <Code :color_btn="color_btn"
+                <Code v-if="loaded"
+                      :color_btn="color_btn"
                       :color_txt="color_txt"
                       :position="position"
-                      :msg="msg"
-                      :buttons="links" />
+                      :msg="msg" />
               </div>
             </div>
+          </q-card-section>
+        </q-card>
+
+        <!--Botão Modal-->
+        <q-card bordered
+                v-if="links.length > 0"
+                style="border-radius: 15px;"
+                v-ripple
+                clickable
+                @click="setModal({ key: 'code', status: true })"
+                class="shadow-0 bg-primary q-mt-lg">
+
+          <q-card-section v-if="true"
+                          style="font-size: 15px; font-weight: 600;"
+                          class="text-center text-white cursor-pointer">
+            <q-icon name="code" size="25px" class="q-pr-sm"/> Copiar código!
           </q-card-section>
         </q-card>
 
@@ -214,8 +205,11 @@
           <q-card-section>
             <div class="row q-pb-md">
               <div class="col-12 text-center">
-                <div class="q-py-md" v-if="true">
+                <div class="q-py-md" v-if="links.length === 0">
                   Crie o primeiro botão para pre-visualizar:
+                </div>
+                <div class="q-py-md" v-else>
+                  Prévia do Widget:
                 </div>
               </div>
               <div class="col-12 text-center">
@@ -258,6 +252,8 @@
 
       <div class="col-xs-12 col-sm-1 col-md-1"></div>
     </div>
+
+    <ModalCode/>
   </q-page>
 </template>
 
@@ -267,12 +263,14 @@ import bot_img from "src/assets/images/robot-outline.png"
 import bot_happy from "src/assets/images/robot-happy-outline.png"
 import bot_love from "src/assets/images/robot-love-outline.png"
 import Code from "components/Code";
+import ModalCode from "components/Modals/ModalCode";
 
 export default defineComponent({
   name: 'Home',
-  components: {Code},
-  data(){
+  components: {ModalCode, Code},
+  data() {
     return {
+      loaded: true,
       bot_img: bot_img,
       bot_happy: bot_happy,
       bot_love: bot_love,
@@ -282,14 +280,14 @@ export default defineComponent({
       position: "right",
       msg: null,
       links: [
-        {
+        /*{
           name: "github",
           label: "GitHub",
           icon: "bx bxl-github",
-          link: null,
+          link: "https://github.com/arturmedeiros",
           color_btn: "#000000",
           color_txt: "#ffffff",
-        },
+        },*/
       ],
       new_button: {
         name: null,
@@ -377,8 +375,8 @@ export default defineComponent({
   },
   watch: {
     'new_button': function (){
-      this.debug(this.new_button)
-    }
+      // this.debug(this.new_button)
+    },
   },
   mounted() {
     setTimeout(() => {
@@ -402,6 +400,36 @@ export default defineComponent({
   methods: {
     debug(payload){
       console.log('debug', payload)
+    },
+    remove(index){
+      this.loaded = false
+
+      this.links.splice(index, 1)
+      this.$store.commit('SET_LINKS', this.xeroxHelper(this.links))
+
+      setTimeout(() => {
+        this.loaded = true
+      }, 600)
+    },
+    add(){
+      this.loaded = false
+
+      // console.log('Aqui')
+      this.links.push(this.xeroxHelper(this.new_button))
+      this.new_button = {
+          name: null,
+          label: "Escolha um botão...",
+          icon: null,
+          link: null,
+          color_btn: null,
+          color_txt: null,
+      }
+      this.$store.commit('SET_LINKS', this.xeroxHelper(this.links))
+      console.log('FIM', this.configs.links)
+
+      setTimeout(() => {
+        this.loaded = true
+      }, 600)
     }
   }
 })

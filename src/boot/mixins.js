@@ -9,6 +9,7 @@ import VueHighlightJS from 'vue3-highlightjs'
 
 export default async ({ app }) => {
   app.use(VueHighlightJS)
+
   app.mixin({
     computed: {
       ...mapState([

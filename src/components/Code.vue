@@ -1,5 +1,6 @@
 <template>
-<div>
+  <div>
+
   <div v-highlightjs>
     <code style="border-radius: 20px; padding: 20px 30px 10px 30px;"
           class="javascript">
@@ -8,8 +9,8 @@
   const options = {
     "color_btn": "{{ color_btn }}",
     "color_txt": "{{ color_txt }}",
-    "position": "{{ position }}",{{ msg ? '${\n} msg: "${msg}",' : ''}}
-    "buttons": {{ xeroxHelper(buttons) ?? [] }}
+    "position": "{{ position }}",{{ msg ? `\n msg: "${msg}",` : ''}}
+    "buttons": {{ xeroxHelper(configs.links) ?? [] }}
   };
 <span>&lt;</span>/script>
 <span>&lt;</span>script type="module" src="https://widgets-buttons.pages.dev/cdn/js/src.js"><span>&lt;</span>/script>
@@ -21,10 +22,14 @@
 </template>
 
 <script>
-// import 'highlight.js/styles/far.css'
 
 export default {
   name: "Code",
+  data(){
+    return {
+      links: []
+    }
+  },
   props: [
     "color_btn",
     "color_txt",
@@ -38,7 +43,23 @@ export default {
   },
   computed: {
   },
-  methods: {}
+  methods: {
+    // code(){
+    //   return `const options = {
+    //         "color_btn": "${this.color_btn}",
+    //         "color_txt": "${this.color_txt}",
+    //         "position": "${this.position}",${this.msg ? `\n msg: ${this.msg},` : ''}
+    //         "buttons": ${this.xeroxHelper(this.configs.links) ?? []}
+    //       };`
+    // }
+
+  },
+  watch: {
+    // 'configs.links': function () {
+    //   this.links = this.xeroxHelper(this.configs.links)
+    //   console.log('watch', this.links)
+    // }
+  }
 }
 </script>
 

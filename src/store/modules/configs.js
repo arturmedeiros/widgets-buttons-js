@@ -6,6 +6,7 @@ const configs = {
     scroll_position: 0,
     modals: {
       maximizedToggle: true,
+      code: false,
       test: false,
     },
     links: [
@@ -19,13 +20,12 @@ const configs = {
       // }
     ],
     options: {
-      type: 1, // Integer
+      // type: 1, // Integer
       color_btn: "#027be3", // String
-      // color_btn: "#2e8b57", // String
       color_txt: "#ffffff", // String
       position: "right", // String
-      icon: null,  // String
-      icon_img: null,  // String
+      // icon: null,  // String
+      // icon_img: null,  // String
       msg: "Olá! Como posso ajudar?",
     }
 
@@ -43,6 +43,7 @@ const configs = {
     },
     SET_LINKS(state, payload) {
       state.links = payload
+      console.log('SET_LINKS', payload)
     },
     SET_OPTIONS(state, payload) {
       state.options = payload
