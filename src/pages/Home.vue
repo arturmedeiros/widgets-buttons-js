@@ -187,7 +187,7 @@
                 v-ripple
                 clickable
                 @click="setModal({ key: 'code', status: true })"
-                class="shadow-0 bg-primary q-mt-lg">
+                class="shadow-0 bg-primary q-mt-lg q-mb-lg">
 
           <q-card-section v-if="true"
                           style="font-size: 15px; font-weight: 600;"
